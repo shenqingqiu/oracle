@@ -1,0 +1,61 @@
+ 分页
+
+rownum：是一个伪列，每一张表都存在，从1开始自动编号，表示行号
+rownum必须有前一个数字才能有下一个数字
+只能做<=或者<
+不能做>=或者>或者between and
+
+
+select *
+from   (select rownum r,id,name,salary
+	from t_emp
+	where rownum<=6)
+where r>=4
+
+
+错 先分页后排序
+select *
+from (select rownum r,id,name salary
+      from t_emp
+      where rownum<=6)
+where r>=4
+order by salary
+
+先排序后分页
+
+
+	select *
+	from t_emp
+	order by salary  e
+
+
+	select *
+	from (select rownum r,id,name,salary
+	      from (select *
+	            from t_emp
+		    order by salary) e
+	      where rownum<=6)
+	where r>=4
+
+
+1 e1 l.rowid=r.rowid 1 e1
+2 e2 2 e2
+3 e3 3 e3
+null 4 e4
+null 5 e5
+null 6 e6
+
+select r.*
+from (select xxx 1-3) l
+right join (select xxx 1-6) r
+where l.rowid is null
+
+rowid:是一个伪列
+存储了row在数据文件中的位置 64位编码值 A-Z a-z 0-9 + /
+
+oooooofffbbbbbbrrr
+
+oooooo:data object number
+fff:file
+bbbbbb:block
+rrr:row

@@ -1,0 +1,11 @@
+用户拥有的权限
+    dba_sys_privs
+    user_sys_privs
+
+用户拥有的角色
+	dba_role_privs
+	user_role_privs
+
+用户拥有的表
+	dba_tables
+	user_tables

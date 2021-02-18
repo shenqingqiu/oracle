@@ -1,0 +1,129 @@
+多表查询
+
+笛卡尔集
+    select * from 表1,表2
+
+	select *
+	from t_emp,t_dept;
+
+
+找出除了老总，其他所有员工的信息，员工名和部门名
+	关联查询（等值查询）
+	select t_emp.name,t_dept.name
+	from t_emp , t_dept
+	where t_emp.dept_id=t_dept.id;
+
+	select e.name,d.name
+	from t_emp e,t_dept d
+	where e.dept_id=d.id;
+
+	连接查询
+	内连接
+	select e.name,d.name
+	from t_emp e
+	inner join t_dept d
+		on e.dept_id=d.id;
+
+
+	select e.name,d.name
+	from t_emp e
+	join t_dept d
+		on e.dept_id=d.id;
+
+
+外连接
+外连接=内连接+没有匹配的记录
+找出所有员工的信息，员工名和部门名
+	select e.name,d.name
+	from t_emp e
+	left outer join t_dept d
+		on e.dept_id=d.id;
+
+	select e.name,d.name
+	from t_emp e
+	left join t_dept d
+		on e.dept_id=d.id;
+
+
+	Oracle特殊语法
+		select e.name,d.name
+		from t_emp e,t_dept d
+		where e.dept_id=d.id(+);
+
+哪些部门没有员工，部门名
+	select d.name
+	from t_emp e
+	right join t_dept d
+		on e.dept_id=d.id
+	where e.id is null;
+
+	select d.name
+	from t_emp e,t_dept d
+	where e.dept_id(+)=d.id
+	and e.id is null;
+
+查询所有员工，显示员工名和领导名
+	自连接
+	select e.name,m.name
+	from t_emp e
+	left join t_emp m
+		on e.manager_id=m.id;
+
+哪些人是领导，姓名
+	select distinct m.name
+	from t_emp e
+	join t_emp m
+		on e.manager_id=m.id;
+
+哪些人不是领导，姓名
+	select m.name
+	from t_emp e
+	right join t_emp m
+		on e.manager_id=m.id
+	where e.id is null;
+
+
+哪些部门没有员工，部门名
+	select d.name
+	from t_emp e
+	right join t_dept d
+		on e.dept_id=d.id
+	where e.id is null;
+
+哪些部门有员工，部门名
+	select distinct d.name
+	from t_emp e
+	join t_dept d
+		on e.dept_id=d.id;
+
+
+2号部门的平均工资，平均工资
+	select avg(salary)
+	from t_emp
+	where dept_id=2;
+
+2号部门的平均工资，部门号和平均工资
+	select max(dept_id),avg(salary)
+	from t_emp
+	where dept_id=2;
+
+	select dept_id,avg(salary)
+	from t_emp
+	where dept_id=2
+	group by dept_id;
+
+
+出现了group by语句
+select语句中只能出现group by中出现的字段和组函数
+其他字段不允许出现
+
+各个部门的平均工资，部门号和平均工资
+	select dept_id,avg(salary)
+	from t_emp
+	group by dept_id;
+
+列出平均工资大于4000的部门，部门号和平均工资
+	select dept_id,avg(salary)
+	from t_emp
+	group by dept_id
+	having avg(salary)>4000;

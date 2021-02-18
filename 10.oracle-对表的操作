@@ -1,0 +1,24 @@
+复制表
+
+    create table 表名 as 子查询
+
+    create table 表名 as (select * from 原表名)
+
+复制表结构
+    create table 表名 as (select * from 原表名 where 1=2)
+
+删除表
+    drop table 表名
+
+修改表
+添加列
+    alter table 表名 add(列名 类型,… …);
+
+修改列的类型
+	alter table 表名 modify(列名 类型);
+
+修改列的名字
+	alter table 表名 rename column 旧列名 to 新列名
+
+删除列
+	alter table 表名 drop column 列名

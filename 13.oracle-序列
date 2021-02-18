@@ -1,0 +1,17 @@
+序列
+    sequence 表示一组连续的值
+
+创建序列
+	create sequence 序列名
+	[increment by n]	指定步长
+	[start with n]		指定起始值
+	[minvalue n]		最小值
+	[maxvalue n]		最大值
+	[cache n/nocache]	缓存的大小
+	[cycle/nocycle]		是否可以循环取值
+
+使用序列
+	currval	序列当前值		不能第一次取值时使用
+	nextval	序列下一个值
+
+

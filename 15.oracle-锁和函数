@@ -1,0 +1,89 @@
+锁
+
+    行级排他锁
+    表级共享锁
+
+
+查询
+
+insert into t_dept values (1,‘d1’);
+insert into t_dept values (2,‘d2’);
+insert into t_dept values (3,‘d3’);
+
+insert into t_emp values (1,‘e1’,5000,null,null);
+insert into t_emp values (2,‘e2’,4500,1,1);
+insert into t_emp values (3,‘e3’,4500,2,1);
+insert into t_emp values (4,‘e4’,4000,1,2);
+insert into t_emp values (5,‘e5’,3900,1,2);
+insert into t_emp values (6,‘e6’,3850,1,2);
+insert into t_emp values (7,‘e7’,3800,2,2);
+insert into t_emp values (8,‘e8’,3500,2,7);
+insert into t_emp values (9,‘e9’,3500,2,7);
+commit;
+
+常用的函数
+单行函数
+字符函数
+lower(str) 转小写
+upper(str) 转大写
+initcap(str) 首字母大写，其他字母小写
+length(str) 字符串长度
+substr(str,start,length) 截取字符串
+str1||str2或者concat(str1,str2) 拼接字符串
+trim(str) 去掉字符串左右空白
+replace(str,str1,str2) 将str中str1替换str2
+instr(str1,str2) 搜索str2在str1中的位置
+
+
+	数值函数
+		round(number,int) 四舍五入
+		trunc(number,int) 截取
+		mod(num1,num2) 取余
+
+	日期函数
+		sysdate 当前日期
+
+		日期+数字=日期
+		日期-日期=天数
+
+		months_between(date1,date2) 统计两个日期相差的月数
+		next_day(date,day) 指定日期的下个星期day是几号
+		last_day(date) 指定日期月份的最后一天
+
+	转换函数
+		to_char(data,format)
+		to_date(str,format)
+		to_number(str,format)
+
+	通用函数
+		nvl(data1,data2) 判断data1的值是否为空
+		                 如果为空返回data2，否则返回data1
+
+		decode(data,case1,data1,case2,data2,...) 类似于switch语句
+
+		case data
+			when case1 then data1
+			when case2 then data2
+			when case3 then data3
+			...
+			else datan
+		end
+
+
+多行函数（组函数）
+	count()		统计数量
+	sum()		求和
+	avg()		求平均数
+	min()		最小值
+	max()		最大值
+
+
+select 值/字段名/表达式/函数/子查询 4
+from 表/子查询 1
+where 条件 2
+group by 字段名 3
+having 查询出结果以后的筛选条件 5
+order by 字段名/表达式 desc/asc 6
+
+所有列所有数据
+select * from 表

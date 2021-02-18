@@ -1,0 +1,23 @@
+DML 数据操作语言
+
+添加数据
+    insert into 表名 values (值1,值2,…)
+
+
+	insert into 表名(字段名1,字段名2,...) values (值1,值2,...)
+
+	insert into 表名 查询
+
+删除数据
+	delete from 表名 [where 条件]
+
+截断表
+	truncate table 表名
+
+delete可以根据条件删除某些数据，truncate删除所有数据
+delete只删除数据，表空间不删除，truncate删除数据并释放表空间
+delete删除时速度慢，truncate删除时速度快
+delete需要提交才可以生效，truncate自动生效
+
+修改数据
+	update 表名 set 字段名=值,... [where 条件]
