@@ -1,9 +1,0 @@
-函数
-
-日期函数
-    to_date(字符串表示的日期,日期格式)
-    to_date(‘2017/04/27’,‘yyyy/mm/dd’)
-
-字符串函数
-	to_char(日期,日期格式)
-	to_char(d,'yyyy/mm/dd hh24:mi:ss day')
