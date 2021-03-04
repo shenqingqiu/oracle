@@ -1,0 +1,42 @@
+DML Data Manipulation Language 数据操作语言 insert update delete
+DDL Data Definition Language 数据定义语言 create alter drop
+DCL Data Control Language 数据控制语言 grant revoke
+
+创建表
+	create table 表名(
+		列名 类型,
+		列名 类型,
+		...
+	);
+
+查看表结构
+	desc 表名
+
+类型
+	1.字符串类型
+		定长字符串：char(n) 固定字符串长度，长度为n，长度不足以空格补充，在字符串后面补空格
+		变长字符串：varchar2(n) 字符串时机占用的长度，长度最大不能超过n
+
+		数据库中表示字符串使用' '
+		||可以做字符串拼接操作
+		'作为字符串的转义符
+
+	2.数字类型
+		number(n,s)
+		n:有效的数字位
+		s:小数点左右的位数
+
+		s=0:number(n,0)==number(n)表示整数，整数位有n位，如果有小数，整数位四舍五入
+		s>0:number(n,s)整个数字有n位，其中小数占s位，整数n-s位，小数位如果超过了s，进行四舍五入
+		s<0:number(n,s)整个数字有n-s,没有小数位，小数点左边s位四舍五入，四舍五入的位置补0
+
+	3.日期类型
+		date
+
+		系统当前日期 sysdate
+
+		日期默认格式：27-4月 -17
+
+	4.大对象类型
+		文本：clob
+		二进制：blob

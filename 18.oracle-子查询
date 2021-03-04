@@ -1,0 +1,100 @@
+子查询
+非关联子查询
+找出谁的工资最低，姓名和工资
+select name,salary
+from t_emp
+where salary=(select min(salary)
+from t_emp);
+
+
+	谁和e4在同一个部门，姓名
+		select name
+		from t_emp
+		where dept_id=(select dept_id
+		               from t_emp
+			       where name='e4')
+		and name<>'e4';
+
+	谁是领导
+		select name
+		from t_emp
+		where id in (select manager_id
+		             from t_emp);
+
+	谁不是领导
+		select name
+		from t_emp
+		where id not in (select manager_id
+		                 from t_emp
+				 where manager_id is not null);
+
+
+	哪些部门的平均工资比d2部门的平均工资高，按平均工资降序显示部门号和平均工资
+
+		select avg(salary)
+		from t_emp e
+		join t_dept d
+			on e.dept_id=d.id
+		where d.name='d2'
+
+
+		select avg(salary)
+		from t_emp
+		where dept_id=(select id
+			       from t_dept
+			       where name='d2')
+
+
+		select dept_id,avg(salary)
+		from t_emp
+		group by dept_id
+		having avg(salary)>(select avg(salary)
+				    from t_emp
+				    where dept_id=(select id
+						   from t_dept
+						   where name='d2'))
+		order by avg(salary) desc;
+
+	哪些人的工资等于本部门的平局工资，姓名，工资，部门id
+		select name,salary,dept_id
+		from t_emp
+		where (nvl(dept_id,0),salary) in (select nvl(dept_id,0),avg(salary)
+		                                  from t_emp
+					          group by dept_id);
+
+	各个部门的最高工资，部门号和工资
+		select dept_id,max(salary)
+		from t_emp
+		group by dept_id;
+
+	各个部门的最高工资，部门号和工资和姓名
+		select dept_id,salary,name
+		from t_emp
+		where (nvl(dept_id,0),salary) in (select nvl(dept_id,0),max(salary)
+					          from t_emp
+					          group by dept_id);
+
+
+关联子查询
+	查处公司的所有部门，部门的所有信息和每一个部门有几个员工
+
+		select d.id,
+		       d.name,
+		       (select count(1)
+			from t_emp e
+			where e.dept_id=d.id) "count"
+		from t_dept d
+
+			ID NAME		count
+		---------- ------------	----------------
+			 1 d1		5    select count(1) from t_emp where dept_id=1;
+			 2 d2		4    select count(1) from t_emp where dept_id=2;
+			 3 d3		0    select count(1) from t_emp where dept_id=3;
+
+	那些人的工资比本部门的平均工资高
+		select name,salary,dept_id
+		from t_emp o
+		where salary>(select avg(salary)
+		              from t_emp i
+			      where i.dept_id=o.dept_id)
+

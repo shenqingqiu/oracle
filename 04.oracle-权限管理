@@ -1,0 +1,25 @@
+ 分类
+    系统权限：用户对数据库执行的操作
+    对象权限：用户对制定的数据库对象执行的操作
+
+系统权限
+	create session：允许用户连接到数据库
+	create table：允许用户创建表
+	create user：允许用户创建用户
+	create sequence：允许用户创建序列
+	create view：允许用户创建视图
+	unlimited tablespace：对表空间无限制
+	...
+
+对象权限
+	select
+	insert
+	update
+	delete
+	all
+
+授权
+	grant 权限 [on 对象] to 用户 [with admin option/with grant option]
+
+回收权限
+	revoke 权限 [on 对象] from 用户

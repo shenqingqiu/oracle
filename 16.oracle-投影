@@ -1,0 +1,129 @@
+投影
+    查询所有员工的姓名和工资
+    select name,salary
+    from t_emp;
+
+查询所有员工的姓名和年薪
+	select name,salary*12
+	from t_emp;
+
+查询所有有员工的姓名和工资在一列显示
+	select name||salary
+	from t_emp;
+
+查询所有员工的姓名和部门id，老总部门id显示0
+	select name,nvl(dept_id,0) "dept id"
+	from t_emp;
+
+
+起别名
+
+
+公司有哪些部门，部门名称
+	select name
+	from t_dept;
+
+员工分布在哪些部门，部门id
+	select distinct dept_id
+	from t_emp;
+
+员工分布在哪些部门，部门id，工资
+	select distinct dept_id,salary
+	from t_emp;
+
+
+distinct表示dinstinct关键字后面的所有字段联合不重复
+
+
+选择操作
+2号部门有哪些员工，员工名和部门号
+select name,dept_id
+from t_emp
+where dept_id=2;
+
+工资大于4000的员工，员工名和年薪
+	select name,salary*12
+	from t_emp
+	where salary>4000;
+
+找出工资在3000到3500之间的员工，员工名和工资
+	select name,salary
+	from t_emp
+	where salary>=3000
+	and salary<=3500;
+
+	select name,salary
+	from t_emp
+	where salary between 3000 and 3500;
+
+找出老总，姓名
+	select name
+	from t_emp
+	where manager_id is null;
+
+找出1号和2号部门的所有员工，多有信息
+	select *
+	from t_emp
+	where dept_id=1
+	or dept_id=2;
+
+	select *
+	from t_emp
+	where dept_id in (1,2);
+
+除了2号和3号部门的所有员工，所有信息
+	select *
+	from t_emp
+	where dept_id not in (2,3)
+	or dept_id is null;
+
+	select *
+	from t_emp
+	where dept_id<>2
+	and dept_id<>3
+	or dept_id is null;
+
+找出姓名以e开头的员工，所有信息
+	select *
+	from t_emp
+	where name like 'e%';
+
+找出当前用户所有以T开头的表，表名
+	select table_name
+	from user_tables
+	where table_name like 'T%';
+
+找出当前用户所有以T_开头的表，表名
+	select table_name
+	from user_tables
+	where table_name like 'T转义符_%' escape '转义符';
+
+找出2号部门年薪比42000高的员工，姓名和工资
+	select name,salary
+	from t_emp
+	where dept_id=2
+	and salary*12>42000;
+	条件的左边如果是一个表达式或者函数
+	这个字段上的索引将失去效果
+
+	select name,salary
+	from t_emp
+	where dept_id=2
+	and salary>42000/12;
+
+
+所有员工的信息，按工资降序显示
+	select *
+	from t_emp
+	order by salary desc
+
+所有员工的信息，按部门升序排序，在每一个部门中按工资降序显示
+	select *
+	from t_emp
+	order by dept_id,salary desc
+
+找出2号部门的员工，按工资降序显示
+	select *
+	from t_emp
+	where dept_id=2
+	order by salary desc

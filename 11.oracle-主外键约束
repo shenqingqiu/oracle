@@ -1,0 +1,20 @@
+约定某些字段能保存什么样的数据
+实际开发中约束不是一定要加的
+
+约束名			约束		语法
+primary key		主键约束PK	列级 primary key		表级 primary key(字段名,...)
+foreign key		外键约束FK	列级 references 表名 (字段名)	表级 foreign key (字段名,...) references 表名 (字段名,...)
+unique  key		唯一约束UK	列级 unique			表级 unique(字段名,...)
+not     null		非空约束NN	列级 not null
+check			自定义约束	列级 check(条件)		表级 check(条件)
+
+
+主键
+	一条记录的唯一标识		非空且唯一
+
+	实际开发中一张表必须要有主键
+	而且这个主键跟业务无关
+
+
+外键
+	一个字段的取值在另一张的某个字段中的数据中取

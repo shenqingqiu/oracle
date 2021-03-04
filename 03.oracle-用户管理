@@ -1,0 +1,17 @@
+创建用户
+    create user 用户名 identified by 密码
+
+删除用户
+	drop user 用户名 [cascade]
+	cascade表示级联操作，删除用户时，将这个用户的所有对象一起删除
+
+用户上锁，解锁
+	alter user 用户名 account lock
+	alter user 用户名 account unlock
+
+修改密码
+	password		修改自己的密码
+	password 用户名		修改别人的密码，需要权限
+
+设置密码过期
+	alter user 用户名 password expire
