@@ -1,0 +1,13 @@
+创建角色
+    create role 角色名
+
+删除角色
+	drop role 角色名
+
+系统提供三种角色
+	dba：最高
+	connect：可以连接数据库
+	resource：可以使用数据库
+
+	管理员可以赋予dba角色
+	普通用户一般赋予connect，resource角色
