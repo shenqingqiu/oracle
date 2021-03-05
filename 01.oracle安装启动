@@ -13,7 +13,9 @@ OracleOraDb10g_home1TNSListener
 Oracle默认端口号: 1521
 服务打开后，使用客户端软件连接oracle服务
 推荐使用windows旗下的Datagrip这个软件可以连接不同种类的数据库，还挺好用的
-
+本机的登录账号密码：yy/yy
+sqlplus
+sqldeveloper
 
 
 3.溯源历史版本
